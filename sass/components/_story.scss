@@ -24,13 +24,22 @@
         width: 15rem;
         height: 15rem;
         float: left;
-        -webkit-shape-outside: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%);
+        border-radius: 50%;
+     
         
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
         transform: translateX(-4rem) skewX(12.01deg);
         position: relative;
+        overflow: hidden;
+        
+
+        // Only if it is supported then apply the below code.
+        @supports(clip-path: polygon(0 0) or (-webkit-clip-path: polygon(0 0))) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);   
+            border-radius: none;  
+        }
 
         @include respond(phone) {
             transform: translateX(-2rem) skewX(0);
